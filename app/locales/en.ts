@@ -522,7 +522,7 @@ const en: LocaleType = {
     Artifacts: "Artifacts",
   },
   Discovery: {
-    Name: "Discovery",
+    Name: "Explore",
   },
   FineTuned: {
     Sysmessage: "You are an assistant that",
