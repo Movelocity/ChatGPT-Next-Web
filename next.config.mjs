@@ -1,4 +1,5 @@
 import webpack from "webpack";
+// import withPWA from "next-pwa";
 
 const mode = process.env.BUILD_MODE ?? "standalone";
 console.log("[Next] build mode", mode);
@@ -102,4 +103,12 @@ if (mode !== "export") {
   };
 }
 
-export default nextConfig;
+// export default withPWA({
+//   ...nextConfig,
+//   pwa: {
+//     dest: "public",
+//     register: true,
+//     skipWaiting: true,
+//   },
+// });
+export default nextConfig

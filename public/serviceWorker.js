@@ -46,10 +46,11 @@ async function remove(request, url) {
   return jsonify({ code: 0 })
 }
 
+// 浏览器拦截和管理本地请求，
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (/^\/api\/cache/.test(url.pathname)) {
-    if ('GET' == e.request.method) {
+    if ('GET' == e.request.method) {  // GET 的东西可以根据缓存直接返回
       e.respondWith(caches.match(e.request))
     }
     if ('POST' == e.request.method) {
