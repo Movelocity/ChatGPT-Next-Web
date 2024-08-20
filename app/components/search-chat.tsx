@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ErrorBoundary } from "./error";
 import styles from "./mask.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,8 @@ import CloseIcon from "../icons/close.svg";
 import EyeIcon from "../icons/eye.svg";
 import Locale from "../locales";
 import { Path } from "../constant";
-
 import { useChatStore } from "../store";
+import { debounce } from "lodash";
 
 type Item = {
   id: number;
@@ -23,11 +23,13 @@ export function SearchChatPage() {
   const sessions = chatStore.sessions;
   const selectSession = chatStore.selectSession;
 
+  const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<Item[]>([]);
 
-  const previousValueRef = useRef<string>("");
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const doSearch = (text: string) => {
+    if (!text) return [];
+
+    console.log("search");
     const lowerCaseText = text.toLowerCase();
     const results: Item[] = [];
 
@@ -56,7 +58,7 @@ export function SearchChatPage() {
         results.push({
           id: index,
           name: session.topic,
-          content: fullTextContents.join("... "), // concat content with...
+          content: fullTextContents.join("... "), // concat content with ...
         });
       }
     });
@@ -67,23 +69,24 @@ export function SearchChatPage() {
     return results;
   };
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (searchInputRef.current) {
-        const currentValue = searchInputRef.current.value;
-        if (currentValue !== previousValueRef.current) {
-          if (currentValue.length > 0) {
-            const result = doSearch(currentValue);
-            setSearchResults(result);
-          }
-          previousValueRef.current = currentValue;
-        }
-      }
-    }, 1000);
+  // 防抖函数
+  const debouncedSearch = debounce((value) => {
+    console.log("sch for:", value);
+    const results = doSearch(value);
+    setSearchResults(results);
+    console.log("sch ok:", value);
+  }, 1000); // 1000 毫秒的防抖时间
 
-    // Cleanup the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, [doSearch]);
+  useEffect(() => {
+    console.log("effect");
+    // 每次 searchValue 变化时调用 debouncedSearch
+    debouncedSearch(searchValue);
+
+    return () => {
+      // 清除上一次的防抖调用
+      debouncedSearch.cancel();
+    };
+  }, [searchValue]);
 
   return (
     <ErrorBoundary>
@@ -118,17 +121,7 @@ export function SearchChatPage() {
               className={styles["search-bar"]}
               placeholder={Locale.SearchChat.Page.Search}
               autoFocus
-              ref={searchInputRef}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  const searchText = e.currentTarget.value;
-                  if (searchText.length > 0) {
-                    const result = doSearch(searchText);
-                    setSearchResults(result);
-                  }
-                }
-              }}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
           </div>
 
