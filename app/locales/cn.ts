@@ -665,11 +665,11 @@ const cn = {
       },
       Artifacts: {
         Title: "启用Artifacts",
-        SubTitle: "启用之后可以直接渲染HTML页面",
+        SubTitle: "启用之后在聊天气泡里可以直接渲染HTML页面",
       },
       CodeFold: {
         Title: "启用代码折叠",
-        SubTitle: "启用之后可以自动折叠/展开过长的代码块",
+        SubTitle: "启用之后聊天气泡里可以自动折叠/展开过长的代码块",
       },
       Share: {
         Title: "分享此面具",

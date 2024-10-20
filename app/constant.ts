@@ -31,18 +31,20 @@ export const IFLYTEK_BASE_URL = "https://spark-api-open.xf-yun.com";
 export const CACHE_URL_PREFIX = "/api/cache";
 export const UPLOAD_URL = `${CACHE_URL_PREFIX}/upload`;
 
+export const page_root = "/nextchat";
 export enum Path {
-  Home = "/",
-  Chat = "/chat",
-  Settings = "/settings",
-  NewChat = "/new-chat",
-  Masks = "/masks",
-  Plugins = "/plugins",
-  Auth = "/auth",
-  Sd = "/sd",
-  SdNew = "/sd-new",
-  Artifacts = "/artifacts",
-  SearchChat = "/search-chat",
+  Home = page_root + "/",
+  Chat = page_root + "/chat",
+  Settings = page_root + "/settings",
+  SettingsAdmin = page_root + "/settings-admin",
+  NewChat = page_root + "/new-chat",
+  Masks = page_root + "/masks",
+  Plugins = page_root + "/plugins",
+  Auth = page_root + "/auth",
+  Sd = page_root + "/sd",
+  SdNew = page_root + "/sd-new",
+  Artifacts = page_root + "/artifacts",
+  SearchChat = page_root + "/search-chat",
 }
 
 export enum ApiPath {

@@ -3,7 +3,9 @@ import { get, set, del, clear } from "idb-keyval";
 import { safeLocalStorage } from "@/app/utils";
 
 const localStorage = safeLocalStorage();
-
+const hasWindow = () => {
+  return typeof window !== "undefined";
+};
 class IndexedDBStorage implements StateStorage {
   public async getItem(name: string): Promise<string | null> {
     try {
@@ -18,7 +20,7 @@ class IndexedDBStorage implements StateStorage {
     try {
       const _value = JSON.parse(value);
       if (!_value?.state?._hasHydrated) {
-        console.warn("skip setItem", name);
+        if (hasWindow()) console.warn("skip setItem", name);
         return;
       }
       await set(name, value);
