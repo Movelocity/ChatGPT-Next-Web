@@ -5,16 +5,18 @@ import { PLUGINS_REPO_URL } from "../constant";
 import { IconButton } from "./button";
 import { ErrorBoundary } from "./error";
 
-import styles from "./mask.module.scss";
-import pluginStyles from "./plugin.module.scss";
+import styles from "@/app/scss/mask.module.scss";
+import pluginStyles from "@/app/scss/plugin.module.scss";
 
-import EditIcon from "../icons/edit.svg";
-import AddIcon from "../icons/add.svg";
-import CloseIcon from "../icons/close.svg";
-import DeleteIcon from "../icons/delete.svg";
-import ConfirmIcon from "../icons/confirm.svg";
-import ReloadIcon from "../icons/reload.svg";
-import GithubIcon from "../icons/github.svg";
+import {
+  EditIcon,
+  AddIcon,
+  CloseIcon,
+  DeleteIcon,
+  ConfirmIcon,
+  ReloadIcon,
+  GithubIcon,
+} from "@/app/icons";
 
 import { Plugin, usePluginStore, FunctionToolService } from "../store/plugin";
 import {

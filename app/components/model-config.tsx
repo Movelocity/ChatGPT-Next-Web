@@ -6,7 +6,7 @@ import { InputRange } from "./input-range";
 import { ListItem, Select } from "./ui-lib";
 import { useAllModels } from "../utils/hooks";
 import { groupBy } from "lodash-es";
-import styles from "./model-config.module.scss";
+import styles from "@/app/scss/model-config.module.scss";
 import { useState } from "react";
 
 export function ModelConfigList(props: {

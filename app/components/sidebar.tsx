@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useMemo, useState, Fragment } from "react";
 
-import styles from "./home.module.scss";
+import styles from "@/app/scss/home.module.scss";
 
 import { IconButton } from "./button";
-import SettingsIcon from "../icons/settings.svg";
-import GithubIcon from "../icons/github.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
-import AddIcon from "../icons/add.svg";
-import DeleteIcon from "../icons/delete.svg";
-import MaskIcon from "../icons/mask.svg";
-import DragIcon from "../icons/drag.svg";
-import DiscoveryIcon from "../icons/discovery.svg";
+import {
+  SettingsIcon,
+  GithubIcon,
+  ChatgptIcon as ChatGptIcon,
+  AddIcon,
+  DeleteIcon,
+  MaskIcon,
+  DragIcon,
+  DiscoveryIcon,
+} from "@/app/icons";
 
 import Locale from "../locales";
 

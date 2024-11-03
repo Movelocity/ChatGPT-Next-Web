@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ErrorBoundary } from "./error";
-import styles from "./mask.module.scss";
+import styles from "@/app/scss/mask.module.scss";
 import { useNavigate } from "react-router-dom";
 import { IconButton } from "./button";
-import CloseIcon from "../icons/close.svg";
-import EyeIcon from "../icons/eye.svg";
+import { CloseIcon, EyeIcon } from "@/app/icons";
 import Locale from "../locales";
 import { Path } from "../constant";
 

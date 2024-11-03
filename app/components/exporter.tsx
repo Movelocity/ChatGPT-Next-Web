@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ChatMessage, useAppConfig, useChatStore } from "../store";
 import Locale from "../locales";
-import styles from "./exporter.module.scss";
+import styles from "@/app/scss/exporter.module.scss";
 import {
   List,
   ListItem,
@@ -18,14 +18,14 @@ import {
   getMessageImages,
   useMobileScreen,
 } from "../utils";
-
-import CopyIcon from "../icons/copy.svg";
-import LoadingIcon from "../icons/three-dots.svg";
-import ChatGptIcon from "../icons/chatgpt.png";
-import ShareIcon from "../icons/share.svg";
-import BotIcon from "../icons/bot.png";
-
-import DownloadIcon from "../icons/download.svg";
+import {
+  CopyIcon,
+  ThreeDotsIcon as LoadingIcon,
+  ChatgptIcon as ChatGptIcon,
+  ShareIcon,
+  BotIcon,
+  DownloadIcon,
+} from "@/app/icons";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { MessageSelector, useMessageSelector } from "./message-selector";
 import { Avatar } from "./emoji";

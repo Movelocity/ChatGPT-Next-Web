@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import styles from "./button.module.scss";
+import styles from "@/app/scss/button.module.scss";
 import { CSSProperties } from "react";
 
 export type ButtonType = "primary" | "danger" | null;

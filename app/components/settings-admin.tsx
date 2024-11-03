@@ -1,15 +1,17 @@
 import { useState, useEffect, useMemo } from "react";
 
-import styles from "./settings.module.scss";
+import styles from "@/app/scss/settings.module.scss";
 
-import ResetIcon from "../icons/reload.svg";
-import AddIcon from "../icons/add.svg";
-import CloseIcon from "../icons/close.svg";
-import CopyIcon from "../icons/copy.svg";
-import ClearIcon from "../icons/clear.svg";
-import LoadingIcon from "../icons/three-dots.svg";
-import EditIcon from "../icons/edit.svg";
-import EyeIcon from "../icons/eye.svg";
+import {
+  ReloadIcon as ResetIcon,
+  AddIcon,
+  CloseIcon,
+  CopyIcon,
+  ClearIcon,
+  ThreeDotsIcon as LoadingIcon,
+  EditIcon,
+  EyeIcon,
+} from "@/app/icons";
 
 import { Input, List, ListItem, Modal, PasswordInput, Select } from "./ui-lib";
 

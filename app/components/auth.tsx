@@ -1,19 +1,15 @@
-import styles from "./auth.module.scss";
+import styles from "@/app/scss/auth.module.scss";
 import { IconButton } from "./button";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
 import { useAccessStore } from "../store";
 import Locale from "../locales";
-// import Delete from "../icons/close.svg";
-// import Arrow from "../icons/arrow.svg";
-// import Logo from "../icons/logo.svg";
-// import { useMobileScreen } from "@/app/utils";
-import BotIcon from "../icons/bot.svg";
+import { BotIcon, LeftIcon } from "@/app/icons";
 import { getClientConfig } from "../config/client";
 import { PasswordInput } from "./ui-lib";
-import LeftIcon from "@/app/icons/left.svg";
 import { safeLocalStorage } from "@/app/utils";
+
 // import {
 //   trackSettingsPageGuideToCPaymentClick,
 //   trackAuthorizationPageButtonToCPaymentClick,

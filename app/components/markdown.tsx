@@ -9,8 +9,10 @@ import { useRef, useState, RefObject, useEffect, useMemo } from "react";
 import { copyToClipboard, useWindowSize } from "../utils";
 import mermaid from "mermaid";
 import Locale from "../locales";
-import LoadingIcon from "../icons/three-dots.svg";
-import ReloadButtonIcon from "../icons/reload.svg";
+import {
+  ThreeDotsIcon as LoadingIcon,
+  ReloadIcon as ReloadButtonIcon,
+} from "@/app/icons";
 import React from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { showImageModal, FullScreen } from "./ui-lib";
@@ -193,7 +195,9 @@ function CustomCode(props: { children: any; className?: string }) {
   const renderShowMoreButton = () => {
     if (showToggle && enableCodeFold && collapsed) {
       return (
-        <div className={`show-hide-button ${collapsed ? "collapsed" : "expanded"}`}>
+        <div
+          className={`show-hide-button ${collapsed ? "collapsed" : "expanded"}`}
+        >
           <button onClick={toggleCollapsed}>{Locale.NewChat.More}</button>
         </div>
       );

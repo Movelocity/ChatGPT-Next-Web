@@ -9,18 +9,20 @@ import {
 import { useParams } from "react-router";
 import { IconButton } from "./button";
 import { nanoid } from "nanoid";
-import ExportIcon from "../icons/share.svg";
-import CopyIcon from "../icons/copy.svg";
-import DownloadIcon from "../icons/download.svg";
-import GithubIcon from "../icons/github.svg";
-import LoadingButtonIcon from "../icons/loading.svg";
-import ReloadButtonIcon from "../icons/reload.svg";
+import {
+  ExportIcon,
+  CopyIcon,
+  DownloadIcon,
+  GithubIcon,
+  LoadingIcon,
+  ReloadIcon,
+} from "@/app/icons";
 import Locale from "../locales";
 import { Modal, showToast } from "./ui-lib";
 import { copyToClipboard, downloadAs } from "../utils";
 import { Path, ApiPath, REPO_URL } from "@/app/constant";
 import { Loading } from "./home";
-import styles from "./artifacts.module.scss";
+import styles from "@/app/scss/artifacts.module.scss";
 
 type HTMLPreviewProps = {
   code: string;
@@ -145,7 +147,7 @@ export function ArtifactsShareButton({
     <>
       <div className="window-action-button" style={style}>
         <IconButton
-          icon={loading ? <LoadingButtonIcon /> : <ExportIcon />}
+          icon={loading ? <LoadingIcon /> : <ExportIcon />}
           bordered
           title={Locale.Export.Artifacts.Title}
           onClick={() => {
@@ -235,7 +237,7 @@ export function Artifacts() {
         <IconButton
           bordered
           style={{ marginLeft: 20 }}
-          icon={<ReloadButtonIcon />}
+          icon={<ReloadIcon />}
           shadow
           onClick={() => previewRef.current?.reload()}
         />

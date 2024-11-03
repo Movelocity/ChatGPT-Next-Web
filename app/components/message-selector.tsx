@@ -6,7 +6,7 @@ import { Avatar } from "./emoji";
 import { MaskAvatar } from "./mask";
 import Locale from "../locales";
 
-import styles from "./message-selector.module.scss";
+import styles from "@/app/scss/message-selector.module.scss";
 import { getMessageTextContent } from "../utils";
 
 function useShiftRange() {

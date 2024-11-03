@@ -4,10 +4,9 @@ require("../polyfill");
 
 import { useState, useEffect } from "react";
 
-import styles from "./home.module.scss";
+import styles from "@/app/scss/home.module.scss";
 
-import BotIcon from "../icons/bot.svg";
-import LoadingIcon from "../icons/three-dots.svg";
+import { BotIcon, ThreeDotsIcon as LoadingIcon } from "@/app/icons";
 
 import { getCSSVar, useMobileScreen } from "../utils";
 
