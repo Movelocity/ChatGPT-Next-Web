@@ -15,6 +15,11 @@
     padding: 10px;
     box-sizing: border-box;
     animation: slide-in-from-top ease 0.3s;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .mask-cards {
@@ -69,57 +74,85 @@
     flex-grow: 1;
     width: 100%;
     overflow: auto;
-    align-items: center;
+    margin-top: 1em;
     padding-top: 20px;
-
-    $linear: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 1),
-      rgba(0, 0, 0, 0)
-    );
-
-    -webkit-mask-image: $linear;
-    mask-image: $linear;
+    padding-left: 20px;
 
     animation: slide-in ease 0.5s;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    .mask-row {
+    .mask {
       display: flex;
-      // justify-content: center;
-      margin-bottom: 10px;
+      flex-direction: column;
+      margin-bottom: .5em;
+      height: 5em;
+      width: 12em;
+      padding: 10px 14px;
+      border: var(--border-in-light);
+      box-shadow: var(--card-shadow);
+      background-color: var(--white);
+      border-radius: 10px;
+      margin-right: 10px;
+      transform: scale(1);
+      cursor: pointer;
+      transition: all ease 0.3s;
 
-      @for $i from 1 to 10 {
-        &:nth-child(#{$i * 2}) {
-          margin-left: 50px;
-        }
-      }
-
-      .mask {
-        display: flex;
-        align-items: center;
-        padding: 10px 14px;
-        border: var(--border-in-light);
-        box-shadow: var(--card-shadow);
-        background-color: var(--white);
-        border-radius: 10px;
-        margin-right: 10px;
-        max-width: 8em;
-        transform: scale(1);
-        cursor: pointer;
-        transition: all ease 0.3s;
-
-        &:hover {
+      &:hover {
           transform: translateY(-5px) scale(1.1);
           z-index: 999;
           border-color: var(--primary);
-        }
+      }
+
+      .mask-head {
+        display: flex;
+        align-items: center;
 
         .mask-name {
-          margin-left: 10px;
-          font-size: 14px;
+            margin-left: 10px;
+            font-size: 14px;
         }
       }
+
+      .mask-desc {
+        font-size: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        // white-space: nowrap;
+      }
+    }
+
+    .white-mask {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: var(--primary);
+      color: white;
+      margin-bottom: .5em;
+      height: 5em;
+      width: 12em;
+      padding: 10px 14px;
+      border: var(--border-in-light);
+      box-shadow: var(--card-shadow);
+      border-radius: 10px;
+      margin-right: 10px;
+      transform: scale(1);
+      cursor: pointer;
+      transition: all ease 0.3s;
+
+      &:hover {
+          transform: translateY(-5px) scale(1.1);
+          z-index: 999;
+          border-color: var(--primary);
+      }
+      svg {
+        filter: invert(0);
+        path {
+          fill: white !important;
+        }
+      }
+      
     }
   }
 }

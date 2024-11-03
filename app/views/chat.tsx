@@ -105,7 +105,10 @@ import {
   ServiceProvider,
 } from "../constant";
 import { Avatar } from "@/app/components/emoji";
-import { ContextPrompts, MaskAvatar, MaskConfig } from "./mask";
+import ContextPrompts from "@/app/components/mask/ContextPrompts";
+import MaskAvatar from "@/app/components/mask/MaskAvatar";
+import MaskConfig from "@/app/components/mask/MaskConfig";
+
 import { useMaskStore } from "../store/mask";
 import { ChatCommandPrefix, useChatCommand, useCommand } from "../command";
 import { prettyObject } from "../utils/format";

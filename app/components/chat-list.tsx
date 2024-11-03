@@ -13,7 +13,7 @@ import { useChatStore } from "../store";
 import Locale from "../locales";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Path } from "../constant";
-import { MaskAvatar } from "@/app/views/mask";
+import MaskAvatar from "@/app/components/mask/MaskAvatar";
 import { Mask } from "../store/mask";
 import { useRef, useEffect } from "react";
 import { showConfirm } from "./ui-lib";

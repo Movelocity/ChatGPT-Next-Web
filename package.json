@@ -6,6 +6,7 @@
     "mask": "npx tsx app/masks/build.ts",
     "mask:watch": "npx watch \"yarn mask\" app/masks",
     "dev": "concurrently -r \"yarn run mask:watch\" \"next dev\"",
+    "dev2": "next dev",
     "build": "yarn mask && cross-env BUILD_MODE=standalone next build",
     "start": "next start",
     "lint": "next lint",
