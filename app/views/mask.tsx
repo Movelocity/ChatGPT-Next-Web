@@ -1,5 +1,5 @@
-import { IconButton } from "./button";
-import { ErrorBoundary } from "./error";
+import { IconButton } from "@/app/components/button";
+import { ErrorBoundary } from "@/app/components/error";
 
 import styles from "@/app/scss/mask.module.scss";
 
@@ -33,8 +33,8 @@ import {
   Popover,
   Select,
   showConfirm,
-} from "./ui-lib";
-import { Avatar, AvatarPicker } from "./emoji";
+} from "@/app/components/ui-lib";
+import { Avatar, AvatarPicker } from "@/app/components/emoji";
 import Locale, { AllLangs, ALL_LANG_OPTIONS, Lang } from "../locales";
 import { useNavigate } from "react-router-dom";
 
@@ -47,7 +47,7 @@ import {
   readFromFile,
 } from "../utils";
 import { Updater } from "../typing";
-import { ModelConfigList } from "./model-config";
+import { ModelConfigList } from "@/app/components/model-config";
 import { FileName, Path } from "../constant";
 import { BUILTIN_MASK_STORE } from "../masks";
 import {

@@ -7,7 +7,7 @@ import {
   useImperativeHandle,
 } from "react";
 import { useParams } from "react-router";
-import { IconButton } from "./button";
+import { IconButton } from "@/app/components/button";
 import { nanoid } from "nanoid";
 import {
   ExportIcon,
@@ -18,7 +18,7 @@ import {
   ReloadIcon,
 } from "@/app/icons";
 import Locale from "../locales";
-import { Modal, showToast } from "./ui-lib";
+import { Modal, showToast } from "@/app/components/ui-lib";
 import { copyToClipboard, downloadAs } from "../utils";
 import { Path, ApiPath, REPO_URL } from "@/app/constant";
 import { Loading } from "./home";

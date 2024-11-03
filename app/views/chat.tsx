@@ -82,7 +82,7 @@ import { DalleSize, DalleQuality, DalleStyle } from "../typing";
 import { Prompt, usePromptStore } from "../store/prompt";
 import Locale from "../locales";
 
-import { IconButton } from "./button";
+import { IconButton } from "@/app/components/button";
 import styles from "@/app/scss/chat.module.scss";
 
 import {
@@ -93,7 +93,7 @@ import {
   showConfirm,
   showPrompt,
   showToast,
-} from "./ui-lib";
+} from "@/app/components/ui-lib";
 import { useNavigate } from "react-router-dom";
 import {
   CHAT_PAGE_SIZE,
@@ -104,12 +104,12 @@ import {
   UNFINISHED_INPUT,
   ServiceProvider,
 } from "../constant";
-import { Avatar } from "./emoji";
+import { Avatar } from "@/app/components/emoji";
 import { ContextPrompts, MaskAvatar, MaskConfig } from "./mask";
 import { useMaskStore } from "../store/mask";
 import { ChatCommandPrefix, useChatCommand, useCommand } from "../command";
 import { prettyObject } from "../utils/format";
-import { ExportMessageModal } from "./exporter";
+import { ExportMessageModal } from "@/app/components/exporter";
 import { getClientConfig } from "../config/client";
 import { useAllModels } from "../utils/hooks";
 import { MultimodalContent } from "../client/api";
@@ -124,9 +124,12 @@ const localStorage = safeLocalStorage();
 
 const ttsPlayer = createTTSPlayer();
 
-const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
-  loading: () => <LoadingIcon />,
-});
+const Markdown = dynamic(
+  async () => (await import("../components/markdown")).Markdown,
+  {
+    loading: () => <LoadingIcon />,
+  },
+);
 
 export function SessionConfigModel(props: { onClose: () => void }) {
   const chatStore = useChatStore();

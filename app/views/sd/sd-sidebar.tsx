@@ -26,12 +26,9 @@ import { useSdStore } from "@/app/store/sd";
 import { showToast } from "@/app/components/ui-lib";
 import { useMobileScreen } from "@/app/utils";
 
-const SdPanel = dynamic(
-  async () => (await import("@/app/components/sd")).SdPanel,
-  {
-    loading: () => null,
-  },
-);
+const SdPanel = dynamic(async () => (await import("@/app/views/sd")).SdPanel, {
+  loading: () => null,
+});
 
 export function SideBar(props: { className?: string }) {
   useHotKey();

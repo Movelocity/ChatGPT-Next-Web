@@ -20,7 +20,7 @@ import {
   ArtifactsShareButton,
   HTMLPreview,
   HTMLPreviewHander,
-} from "./artifacts";
+} from "@/app/views/artifacts";
 import { useChatStore } from "../store";
 import { IconButton } from "./button";
 

@@ -2,8 +2,8 @@ import { useDebouncedCallback } from "use-debounce";
 import OpenAPIClientAxios from "openapi-client-axios";
 import yaml from "js-yaml";
 import { PLUGINS_REPO_URL } from "../constant";
-import { IconButton } from "./button";
-import { ErrorBoundary } from "./error";
+import { IconButton } from "@/app/components/button";
+import { ErrorBoundary } from "@/app/components/error";
 
 import styles from "@/app/scss/mask.module.scss";
 import pluginStyles from "@/app/scss/plugin.module.scss";
@@ -26,7 +26,7 @@ import {
   Modal,
   showConfirm,
   showToast,
-} from "./ui-lib";
+} from "@/app/components/ui-lib";
 import Locale from "../locales";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

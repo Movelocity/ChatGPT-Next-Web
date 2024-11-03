@@ -12,7 +12,7 @@ import { getCSSVar, useMobileScreen } from "../utils";
 
 import dynamic from "next/dynamic";
 import { Path, SlotID } from "../constant";
-import { ErrorBoundary } from "./error";
+import { ErrorBoundary } from "@/app/components/error";
 
 import { getISOLang, getLang } from "../locales";
 
@@ -22,7 +22,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { SideBar } from "./sidebar";
+import { SideBar } from "@/app/components/sidebar";
 import { useAppConfig } from "../store/config";
 import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";

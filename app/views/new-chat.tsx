@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Path, SlotID } from "../constant";
-import { IconButton } from "./button";
-import { EmojiAvatar } from "./emoji";
+import { IconButton } from "@/app/components/button";
+import { EmojiAvatar } from "@/app/components/emoji";
 import styles from "@/app/scss/new-chat.module.scss";
 
 import { LeftIcon, LightningIcon, EyeIcon } from "@/app/icons";
@@ -12,7 +12,7 @@ import Locale from "../locales";
 import { useAppConfig, useChatStore } from "../store";
 import { MaskAvatar } from "./mask";
 import { useCommand } from "../command";
-import { showConfirm } from "./ui-lib";
+import { showConfirm } from "@/app/components/ui-lib";
 import { BUILTIN_MASK_STORE } from "../masks";
 
 function MaskItem(props: { mask: Mask; onClick?: () => void }) {

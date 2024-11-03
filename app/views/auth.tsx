@@ -1,5 +1,5 @@
 import styles from "@/app/scss/auth.module.scss";
-import { IconButton } from "./button";
+import { IconButton } from "@/app/components/button";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
@@ -7,7 +7,7 @@ import { useAccessStore } from "../store";
 import Locale from "../locales";
 import { BotIcon, LeftIcon } from "@/app/icons";
 import { getClientConfig } from "../config/client";
-import { PasswordInput } from "./ui-lib";
+import { PasswordInput } from "@/app/components/ui-lib";
 import { safeLocalStorage } from "@/app/utils";
 
 // import {

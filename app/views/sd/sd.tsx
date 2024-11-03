@@ -1,6 +1,6 @@
 import chatStyles from "@/app/scss/chat.module.scss";
-import styles from "@/app/components/sd/sd.module.scss";
 import homeStyles from "@/app/scss/home.module.scss";
+import styles from "./sd.module.scss";
 
 import { IconButton } from "@/app/components/button";
 
@@ -30,7 +30,7 @@ import {
 } from "@/app/icons";
 
 import { getClientConfig } from "@/app/config/client";
-import { ChatAction } from "@/app/components/chat";
+import { ChatAction } from "@/app/views/chat";
 import { Property } from "csstype";
 import {
   showConfirm,
@@ -39,7 +39,7 @@ import {
 } from "@/app/components/ui-lib";
 import { removeImage } from "@/app/utils/chat";
 import { SideBar } from "./sd-sidebar";
-import { WindowContent } from "@/app/components/home";
+import { WindowContent } from "@/app/views/home";
 import { params } from "./sd-panel";
 
 function getSdTaskStatus(item: any) {

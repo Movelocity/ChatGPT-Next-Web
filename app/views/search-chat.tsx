@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { ErrorBoundary } from "./error";
+import { ErrorBoundary } from "@/app/components/error";
 import styles from "@/app/scss/mask.module.scss";
 import { useNavigate } from "react-router-dom";
-import { IconButton } from "./button";
+import { IconButton } from "@/app/components/button";
 import { CloseIcon, EyeIcon } from "@/app/icons";
 import Locale from "../locales";
 import { Path } from "../constant";
