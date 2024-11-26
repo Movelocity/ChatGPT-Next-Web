@@ -11,6 +11,7 @@ import DeleteIcon from "../icons/delete.svg";
 import MaskIcon from "../icons/mask.svg";
 import DragIcon from "../icons/drag.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
+import ZoomIcon from "../icons/zoom.svg";
 
 import Locale from "../locales";
 
@@ -314,6 +315,16 @@ export function SideBar(props: { className?: string }) {
                   shadow
                 />
               </a>
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <Link to={Path.SearchChat}>
+                <IconButton
+                  title={Locale.Select.Search}
+                  aria={Locale.Export.MessageFromChatGPT}
+                  icon={<ZoomIcon />}
+                  shadow
+                />
+              </Link>
             </div>
           </>
         }

@@ -597,8 +597,9 @@ export function Settings() {
       setCheckingUpdate(false);
     });
 
-    console.log("[Update] local version ", updateStore.version);
-    console.log("[Update] remote version ", updateStore.remoteVersion);
+    console.log(
+      `[Update] local version ${updateStore.version} remote version ${updateStore.remoteVersion}`,
+    );
   }
 
   const accessStore = useAccessStore();

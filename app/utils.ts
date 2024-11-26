@@ -346,9 +346,9 @@ export function safeLocalStorage(): {
       if (storage) {
         return storage.getItem(key);
       } else {
-        console.warn(
-          `Attempted to get item "${key}" from localStorage, but localStorage is not available.`,
-        );
+        // console.warn(
+        //   `Attempted to get item "${key}" from localStorage, but localStorage is not available.`,
+        // );
         return null;
       }
     },
@@ -356,9 +356,9 @@ export function safeLocalStorage(): {
       if (storage) {
         storage.setItem(key, value);
       } else {
-        console.warn(
-          `Attempted to set item "${key}" in localStorage, but localStorage is not available.`,
-        );
+        // console.warn(
+        //   `Attempted to set item "${key}" in localStorage, but localStorage is not available.`,
+        // );
       }
     },
     removeItem(key: string): void {
