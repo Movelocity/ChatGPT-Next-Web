@@ -31,7 +31,7 @@ export const IFLYTEK_BASE_URL = "https://spark-api-open.xf-yun.com";
 export const CACHE_URL_PREFIX = "/api/cache";
 export const UPLOAD_URL = `${CACHE_URL_PREFIX}/upload`;
 
-export const page_root = "/nextchat";
+export const page_root = "";
 export enum Path {
   Home = page_root + "/",
   Chat = page_root + "/chat",
@@ -503,5 +503,9 @@ export const PLUGINS = [
   { name: "Search Chat", path: Path.SearchChat },
 ];
 
-export const SAAS_CHAT_URL = "https://nextchat.dev/chat";
-export const SAAS_CHAT_UTM_URL = "https://nextchat.dev/chat?utm=github";
+// export const SAAS_CHAT_URL = "https://nextchat.dev/chat";
+// export const SAAS_CHAT_UTM_URL = "https://nextchat.dev/chat?utm=github";
+export const SAAS_CHAT_URL =
+  "https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web";
+export const SAAS_CHAT_UTM_URL =
+  "https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web";
