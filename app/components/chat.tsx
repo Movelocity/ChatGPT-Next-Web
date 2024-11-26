@@ -1281,7 +1281,14 @@ function _Chat() {
   }
 
   const context: RenderMessage[] = useMemo(() => {
-    return session.mask.hideContext ? [] : session.mask.context.slice();
+    const ctx = session.mask.context.slice();
+    /** extend: start - hide system only*/
+    if (session.mask.hideContext) {
+      // hide message with role as 'system' only
+      ctx.splice(0, ctx.length, ...ctx.filter((m) => m.role !== "system"));
+    }
+    return ctx;
+    /** extend: end - hide system only */
   }, [session.mask.context, session.mask.hideContext]);
 
   if (

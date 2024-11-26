@@ -573,8 +573,8 @@ export const useChatStore = createPersistStore(
         // concat all messages
         const recentMessages = [
           ...systemPrompts,
-          ...longTermMemoryPrompts,
           ...contextPrompts,
+          ...longTermMemoryPrompts, // memory 应该介于全局提示词和当前对话之间
           ...reversedRecentMessages.reverse(),
         ];
 
