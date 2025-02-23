@@ -163,6 +163,27 @@ const en: LocaleType = {
     Title: "Settings",
     SubTitle: "All Settings",
     ShowPassword: "ShowPassword",
+
+    General: {
+      Title: "General",
+      SubTitle: "Basic Settings",
+    },
+    Appearance: {
+      Title: "Appearance",
+      SubTitle: "Customize the look and feel",
+    },
+    Providers: {
+      Title: "Providers",
+      SubTitle: "Configure AI service providers",
+    },
+    Advanced: {
+      Title: "Advanced",
+      SubTitle: "Advanced settings",
+    },
+    Prompts: {
+      Title: "Prompts",
+      SubTitle: "Manage custom prompts",
+    },
     Danger: {
       Reset: {
         Title: "Reset All Settings",

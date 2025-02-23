@@ -30,6 +30,7 @@ import { type ClientApi, getClientApi } from "../client/api";
 import { useAccessStore } from "../store";
 import clsx from "clsx";
 import { initializeMcpSystem, isMcpEnabled } from "../mcp/actions";
+import { settingsRoutes } from "./settings/routes";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -200,7 +201,17 @@ function Screen() {
             <Route path={Path.Plugins} element={<PluginPage />} />
             <Route path={Path.SearchChat} element={<SearchChat />} />
             <Route path={Path.Chat} element={<Chat />} />
-            <Route path={Path.Settings} element={<Settings />} />
+            {settingsRoutes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element}>
+                {route.children?.map((child) => (
+                  <Route
+                    key={child.path}
+                    path={child.path}
+                    element={child.element}
+                  />
+                ))}
+              </Route>
+            ))}
             <Route path={Path.McpMarket} element={<McpMarketPage />} />
           </Routes>
         </WindowContent>
