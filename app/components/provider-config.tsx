@@ -2,14 +2,97 @@ import { useState } from "react";
 import { List, ListItem, Modal, PasswordInput, Select } from "./ui-lib";
 import { IconButton } from "./button";
 import CloseIcon from "../icons/close.svg";
+import DownloadIcon from "../icons/download.svg";
+import UploadIcon from "../icons/upload.svg";
 import { useProviderStore } from "../store/provider";
 import { ServiceProvider } from "../constant";
+import { showToast } from "./ui-lib";
 
 export function ProviderConfig(props: { onClose?: () => void }) {
   const providerStore = useProviderStore();
   const [provider, setProvider] = useState<ServiceProvider>(
     ServiceProvider.OpenAI,
   );
+
+  const exportConfig = () => {
+    // Only export the configuration values, not the functions
+    const config = {
+      openaiApiKey: providerStore.openaiApiKey,
+      openaiUrl: providerStore.openaiUrl,
+      azureApiKey: providerStore.azureApiKey,
+      azureUrl: providerStore.azureUrl,
+      azureApiVersion: providerStore.azureApiVersion,
+      googleApiKey: providerStore.googleApiKey,
+      googleUrl: providerStore.googleUrl,
+      googleApiVersion: providerStore.googleApiVersion,
+      anthropicApiKey: providerStore.anthropicApiKey,
+      anthropicUrl: providerStore.anthropicUrl,
+      anthropicApiVersion: providerStore.anthropicApiVersion,
+      baiduApiKey: providerStore.baiduApiKey,
+      baiduUrl: providerStore.baiduUrl,
+      baiduSecretKey: providerStore.baiduSecretKey,
+      bytedanceApiKey: providerStore.bytedanceApiKey,
+      bytedanceUrl: providerStore.bytedanceUrl,
+      alibabaApiKey: providerStore.alibabaApiKey,
+      alibabaUrl: providerStore.alibabaUrl,
+      moonshotApiKey: providerStore.moonshotApiKey,
+      moonshotUrl: providerStore.moonshotUrl,
+      stabilityApiKey: providerStore.stabilityApiKey,
+      stabilityUrl: providerStore.stabilityUrl,
+      tencentSecretKey: providerStore.tencentSecretKey,
+      tencentSecretId: providerStore.tencentSecretId,
+      tencentUrl: providerStore.tencentUrl,
+      iflytekApiKey: providerStore.iflytekApiKey,
+      iflytekUrl: providerStore.iflytekUrl,
+      iflytekApiSecret: providerStore.iflytekApiSecret,
+      deepseekApiKey: providerStore.deepseekApiKey,
+      deepseekUrl: providerStore.deepseekUrl,
+      xaiApiKey: providerStore.xaiApiKey,
+      xaiUrl: providerStore.xaiUrl,
+      chatglmApiKey: providerStore.chatglmApiKey,
+      chatglmUrl: providerStore.chatglmUrl,
+      siliconflowApiKey: providerStore.siliconflowApiKey,
+      siliconflowUrl: providerStore.siliconflowUrl,
+    };
+
+    const blob = new Blob([JSON.stringify(config, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "provider-config.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const importConfig = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const config = JSON.parse(e.target?.result as string);
+          providerStore.update((state) => {
+            Object.assign(state, config);
+          });
+          showToast("Configuration imported successfully");
+        } catch (err) {
+          showToast("Failed to import configuration");
+          console.error("[Import Config]", err);
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  };
 
   const renderProviderConfig = () => {
     switch (provider) {
@@ -550,6 +633,20 @@ export function ProviderConfig(props: { onClose?: () => void }) {
         title="Provider Configuration"
         onClose={() => props.onClose?.()}
         actions={[
+          <IconButton
+            key="import"
+            icon={<UploadIcon />}
+            text="Import"
+            onClick={importConfig}
+            bordered
+          />,
+          <IconButton
+            key="export"
+            icon={<DownloadIcon />}
+            text="Export"
+            onClick={exportConfig}
+            bordered
+          />,
           <IconButton
             key="close"
             onClick={props.onClose}
