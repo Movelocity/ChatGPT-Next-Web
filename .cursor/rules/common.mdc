@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+---
+
+- When you finished a user request, write a short git commit message about the key modification this time. Use prefix like: feat: , fix: , test: , refactor: ...

@@ -1,0 +1,6 @@
+---
+description: i18n
+globs: 
+---
+
+We ignore i18n because we are doing fast development. Driectly use hard coded English for new functions is preferred.
