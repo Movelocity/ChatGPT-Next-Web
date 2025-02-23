@@ -20,7 +20,10 @@ import {
 } from "../utils/auth-settings-events";
 import clsx from "clsx";
 
-const storage = safeLocalStorage();
+let storage: ReturnType<typeof safeLocalStorage>;
+if (typeof window !== "undefined") {
+  storage = safeLocalStorage();
+}
 
 export function AuthPage() {
   const navigate = useNavigate();

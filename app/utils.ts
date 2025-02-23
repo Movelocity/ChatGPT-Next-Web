@@ -20,8 +20,8 @@ export function trimTopic(topic: string) {
   return (
     topic
       // fix for gemini
-      .replace(/^["“”*]+|["“”*]+$/g, "")
-      .replace(/[，。！？”“"、,.!?*]*$/, "")
+      .replace(/^["""*]+|["""*]+$/g, "")
+      .replace(/[，。！？""""、,.!?*]*$/, "")
   );
 }
 
@@ -380,52 +380,64 @@ export function safeLocalStorage(): {
   removeItem: (key: string) => void;
   clear: () => void;
 } {
-  let storage: Storage | null;
+  let storage: Storage | null = null;
 
-  try {
-    if (typeof window !== "undefined" && window.localStorage) {
-      storage = window.localStorage;
-    } else {
-      storage = null;
+  const getStorage = () => {
+    if (storage !== null) return storage;
+
+    if (typeof window === "undefined") {
+      return null;
     }
-  } catch (e) {
-    console.error("localStorage is not available:", e);
-    storage = null;
-  }
+
+    try {
+      if (window.localStorage) {
+        storage = window.localStorage;
+      }
+    } catch (e) {
+      console.error("localStorage is not available:", e);
+    }
+
+    return storage;
+  };
 
   return {
     getItem(key: string): string | null {
-      if (storage) {
-        return storage.getItem(key);
-      } else {
+      const s = getStorage();
+      if (s) {
+        return s.getItem(key);
+      }
+      if (typeof window !== "undefined") {
         console.warn(
           `Attempted to get item "${key}" from localStorage, but localStorage is not available.`,
         );
-        return null;
       }
+      return null;
     },
     setItem(key: string, value: string): void {
-      if (storage) {
-        storage.setItem(key, value);
-      } else {
+      const s = getStorage();
+      if (s) {
+        s.setItem(key, value);
+      } else if (typeof window !== "undefined") {
         console.warn(
           `Attempted to set item "${key}" in localStorage, but localStorage is not available.`,
         );
       }
     },
     removeItem(key: string): void {
-      if (storage) {
-        storage.removeItem(key);
-      } else {
+      const s = getStorage();
+      if (s) {
+        s.removeItem(key);
+      } else if (typeof window !== "undefined") {
         console.warn(
           `Attempted to remove item "${key}" from localStorage, but localStorage is not available.`,
         );
       }
     },
     clear(): void {
-      if (storage) {
-        storage.clear();
-      } else {
+      const s = getStorage();
+      if (s) {
+        s.clear();
+      } else if (typeof window !== "undefined") {
         console.warn(
           "Attempted to clear localStorage, but localStorage is not available.",
         );

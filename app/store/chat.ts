@@ -39,7 +39,12 @@ import { createEmptyMask, Mask } from "./mask";
 import { executeMcpAction, getAllTools, isMcpEnabled } from "../mcp/actions";
 import { extractMcpJson, isMcpJson } from "../mcp/utils";
 
-const localStorage = safeLocalStorage();
+// Lazy import safeLocalStorage
+let localStorage: ReturnType<typeof safeLocalStorage>;
+if (typeof window !== "undefined") {
+  const { safeLocalStorage } = require("../utils");
+  localStorage = safeLocalStorage();
+}
 
 export type ChatMessageTool = {
   id: string;
