@@ -242,6 +242,7 @@ const cn = {
       SubTitle: "根据对话内容生成合适的标题",
     },
     Sync: {
+      Title: "数据同步",
       CloudState: "云端数据",
       NotSyncYet: "还没有进行过同步",
       Success: "同步成功",

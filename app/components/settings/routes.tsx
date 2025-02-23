@@ -2,6 +2,10 @@ import { Path } from "../../constant";
 import { SettingsLayout } from "./layout";
 import { GeneralSettings } from "./general";
 import { AppearanceSettings } from "./appearance";
+import { ProvidersSettings } from "./providers";
+import { AdvancedSettings } from "./advanced";
+import { SyncSettings } from "./sync";
+import { PromptsSettings } from "./prompts";
 
 export const settingsRoutes = [
   {
@@ -16,7 +20,22 @@ export const settingsRoutes = [
         path: Path.SettingsAppearance,
         element: <AppearanceSettings />,
       },
-      // 其他子路由将在后续添加
+      {
+        path: Path.SettingsProviders,
+        element: <ProvidersSettings />,
+      },
+      {
+        path: Path.SettingsSync,
+        element: <SyncSettings />,
+      },
+      {
+        path: Path.SettingsPrompts,
+        element: <PromptsSettings />,
+      },
+      {
+        path: Path.SettingsAdvanced,
+        element: <AdvancedSettings />,
+      },
     ],
   },
 ];

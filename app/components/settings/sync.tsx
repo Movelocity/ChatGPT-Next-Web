@@ -1,4 +1,5 @@
-import { List, ListItem, IconButton } from "../ui-lib";
+import { List, ListItem } from "../ui-lib";
+import { IconButton } from "../button";
 import { useSyncStore } from "../../store/sync";
 import { useChatStore } from "../../store";
 import { usePromptStore } from "../../store/prompt";
