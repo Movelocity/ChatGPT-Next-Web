@@ -56,6 +56,7 @@ export class MCPClientLogger {
    * Print formatted message to console
    */
   private print(color: string, message: any) {
+    if (!this.debugMode && process.env.NODE_ENV === "production") return;
     const formattedMessage = this.formatMessage(message);
     const logMessage = `${color}${colors.bright}[${this.prefix}]${colors.reset} ${formattedMessage}`;
 

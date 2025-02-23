@@ -240,16 +240,22 @@ export function Home() {
   useHtmlLang();
 
   useEffect(() => {
-    console.log("[Config] got config from build time", getClientConfig());
+    if (process.env.NODE_ENV !== "production") {
+      console.log("[Config] got config from build time", getClientConfig());
+    }
     useAccessStore.getState().fetch();
 
     const initMcp = async () => {
       try {
         const enabled = await isMcpEnabled();
         if (enabled) {
-          console.log("[MCP] initializing...");
+          if (process.env.NODE_ENV !== "production") {
+            console.log("[MCP] initializing...");
+          }
           await initializeMcpSystem();
-          console.log("[MCP] initialized");
+          if (process.env.NODE_ENV !== "production") {
+            console.log("[MCP] initialized");
+          }
         }
       } catch (err) {
         console.error("[MCP] failed to initialize:", err);

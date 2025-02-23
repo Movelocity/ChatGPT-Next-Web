@@ -54,8 +54,10 @@ async function request(req: NextRequest) {
     baseUrl = baseUrl.slice(0, -1);
   }
 
-  console.log("[Proxy] ", path);
-  console.log("[Base Url]", baseUrl);
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[Proxy] ", path);
+    console.log("[Base Url]", baseUrl);
+  }
 
   const timeoutId = setTimeout(
     () => {

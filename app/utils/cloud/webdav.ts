@@ -21,11 +21,13 @@ export function createWebDavClient(store: SyncStore) {
         const success = [201, 200, 404, 405, 301, 302, 307, 308].includes(
           res.status,
         );
-        console.log(
-          `[WebDav] check ${success ? "success" : "failed"}, ${res.status} ${
-            res.statusText
-          }`,
-        );
+        if (process.env.NODE_ENV !== "production") {
+          console.log(
+            `[WebDav] check ${success ? "success" : "failed"}, ${res.status} ${
+              res.statusText
+            }`,
+          );
+        }
         return success;
       } catch (e) {
         console.error("[WebDav] failed to check", e);
@@ -40,7 +42,9 @@ export function createWebDavClient(store: SyncStore) {
         headers: this.headers(),
       });
 
-      console.log("[WebDav] get key = ", key, res.status, res.statusText);
+      if (process.env.NODE_ENV !== "production") {
+        console.log("[WebDav] get key = ", key, res.status, res.statusText);
+      }
 
       if (404 == res.status) {
         return "";
@@ -56,7 +60,9 @@ export function createWebDavClient(store: SyncStore) {
         body: value,
       });
 
-      console.log("[WebDav] set key = ", key, res.status, res.statusText);
+      if (process.env.NODE_ENV !== "production") {
+        console.log("[WebDav] set key = ", key, res.status, res.statusText);
+      }
     },
 
     headers() {
