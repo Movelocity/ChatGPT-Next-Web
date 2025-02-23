@@ -24,6 +24,7 @@ import { createPersistStore } from "../utils/store";
 import { ensure } from "../utils/clone";
 import { DEFAULT_CONFIG } from "./config";
 import { getModelProvider } from "../utils/model";
+import { useProviderStore } from "./provider";
 
 let fetchState = 0; // 0 not fetch, 1 fetching, 2 done
 
@@ -146,6 +147,53 @@ const DEFAULT_ACCESS_STATE = {
   edgeTTSVoiceName: "zh-CN-YunxiNeural",
 };
 
+interface DangerConfig {
+  needCode: boolean;
+  hideUserApiKey: boolean;
+  disableGPT4: boolean;
+  hideBalanceQuery: boolean;
+  disableFastLink: boolean;
+  customModels: string;
+  defaultModel: string;
+  visionModels: string;
+  openaiApiKey?: string;
+  openaiUrl?: string;
+  azureApiKey?: string;
+  azureUrl?: string;
+  azureApiVersion?: string;
+  googleApiKey?: string;
+  googleUrl?: string;
+  googleApiVersion?: string;
+  anthropicApiKey?: string;
+  anthropicUrl?: string;
+  anthropicApiVersion?: string;
+  baiduApiKey?: string;
+  baiduUrl?: string;
+  baiduSecretKey?: string;
+  bytedanceApiKey?: string;
+  bytedanceUrl?: string;
+  alibabaApiKey?: string;
+  alibabaUrl?: string;
+  moonshotApiKey?: string;
+  moonshotUrl?: string;
+  stabilityApiKey?: string;
+  stabilityUrl?: string;
+  tencentSecretKey?: string;
+  tencentSecretId?: string;
+  tencentUrl?: string;
+  iflytekApiKey?: string;
+  iflytekUrl?: string;
+  iflytekApiSecret?: string;
+  deepseekApiKey?: string;
+  deepseekUrl?: string;
+  xaiApiKey?: string;
+  xaiUrl?: string;
+  chatglmApiKey?: string;
+  chatglmUrl?: string;
+  siliconflowApiKey?: string;
+  siliconflowUrl?: string;
+}
+
 export const useAccessStore = createPersistStore(
   { ...DEFAULT_ACCESS_STATE },
 
@@ -245,6 +293,56 @@ export const useAccessStore = createPersistStore(
     fetch() {
       if (fetchState > 0 || getClientConfig()?.buildMode === "export") return;
       fetchState = 1;
+
+      // Get provider configurations
+      const providerStore = useProviderStore.getState();
+
+      // Update access store with provider configurations if they exist
+      set((state) => ({
+        ...state,
+        openaiApiKey: providerStore.openaiApiKey || state.openaiApiKey,
+        openaiUrl: providerStore.openaiUrl || state.openaiUrl,
+        azureApiKey: providerStore.azureApiKey || state.azureApiKey,
+        azureUrl: providerStore.azureUrl || state.azureUrl,
+        azureApiVersion: providerStore.azureApiVersion || state.azureApiVersion,
+        googleApiKey: providerStore.googleApiKey || state.googleApiKey,
+        googleUrl: providerStore.googleUrl || state.googleUrl,
+        googleApiVersion:
+          providerStore.googleApiVersion || state.googleApiVersion,
+        anthropicApiKey: providerStore.anthropicApiKey || state.anthropicApiKey,
+        anthropicUrl: providerStore.anthropicUrl || state.anthropicUrl,
+        anthropicApiVersion:
+          providerStore.anthropicApiVersion || state.anthropicApiVersion,
+        baiduApiKey: providerStore.baiduApiKey || state.baiduApiKey,
+        baiduUrl: providerStore.baiduUrl || state.baiduUrl,
+        baiduSecretKey: providerStore.baiduSecretKey || state.baiduSecretKey,
+        bytedanceApiKey: providerStore.bytedanceApiKey || state.bytedanceApiKey,
+        bytedanceUrl: providerStore.bytedanceUrl || state.bytedanceUrl,
+        alibabaApiKey: providerStore.alibabaApiKey || state.alibabaApiKey,
+        alibabaUrl: providerStore.alibabaUrl || state.alibabaUrl,
+        moonshotApiKey: providerStore.moonshotApiKey || state.moonshotApiKey,
+        moonshotUrl: providerStore.moonshotUrl || state.moonshotUrl,
+        stabilityApiKey: providerStore.stabilityApiKey || state.stabilityApiKey,
+        stabilityUrl: providerStore.stabilityUrl || state.stabilityUrl,
+        tencentSecretKey:
+          providerStore.tencentSecretKey || state.tencentSecretKey,
+        tencentSecretId: providerStore.tencentSecretId || state.tencentSecretId,
+        tencentUrl: providerStore.tencentUrl || state.tencentUrl,
+        iflytekApiKey: providerStore.iflytekApiKey || state.iflytekApiKey,
+        iflytekUrl: providerStore.iflytekUrl || state.iflytekUrl,
+        iflytekApiSecret:
+          providerStore.iflytekApiSecret || state.iflytekApiSecret,
+        deepseekApiKey: providerStore.deepseekApiKey || state.deepseekApiKey,
+        deepseekUrl: providerStore.deepseekUrl || state.deepseekUrl,
+        xaiApiKey: providerStore.xaiApiKey || state.xaiApiKey,
+        xaiUrl: providerStore.xaiUrl || state.xaiUrl,
+        chatglmApiKey: providerStore.chatglmApiKey || state.chatglmApiKey,
+        chatglmUrl: providerStore.chatglmUrl || state.chatglmUrl,
+        siliconflowApiKey:
+          providerStore.siliconflowApiKey || state.siliconflowApiKey,
+        siliconflowUrl: providerStore.siliconflowUrl || state.siliconflowUrl,
+      }));
+
       fetch("/api/config", {
         method: "post",
         body: null,
@@ -265,7 +363,124 @@ export const useAccessStore = createPersistStore(
         })
         .then((res: DangerConfig) => {
           console.log("[Config] got config from server", res);
-          set(() => ({ ...res }));
+          set((state) => ({
+            ...state,
+            ...res,
+            // Keep provider configurations from UI if they exist
+            openaiApiKey:
+              providerStore.openaiApiKey ||
+              res.openaiApiKey ||
+              state.openaiApiKey,
+            openaiUrl:
+              providerStore.openaiUrl || res.openaiUrl || state.openaiUrl,
+            azureApiKey:
+              providerStore.azureApiKey || res.azureApiKey || state.azureApiKey,
+            azureUrl: providerStore.azureUrl || res.azureUrl || state.azureUrl,
+            azureApiVersion:
+              providerStore.azureApiVersion ||
+              res.azureApiVersion ||
+              state.azureApiVersion,
+            googleApiKey:
+              providerStore.googleApiKey ||
+              res.googleApiKey ||
+              state.googleApiKey,
+            googleUrl:
+              providerStore.googleUrl || res.googleUrl || state.googleUrl,
+            googleApiVersion:
+              providerStore.googleApiVersion ||
+              res.googleApiVersion ||
+              state.googleApiVersion,
+            anthropicApiKey:
+              providerStore.anthropicApiKey ||
+              res.anthropicApiKey ||
+              state.anthropicApiKey,
+            anthropicUrl:
+              providerStore.anthropicUrl ||
+              res.anthropicUrl ||
+              state.anthropicUrl,
+            anthropicApiVersion:
+              providerStore.anthropicApiVersion ||
+              res.anthropicApiVersion ||
+              state.anthropicApiVersion,
+            baiduApiKey:
+              providerStore.baiduApiKey || res.baiduApiKey || state.baiduApiKey,
+            baiduUrl: providerStore.baiduUrl || res.baiduUrl || state.baiduUrl,
+            baiduSecretKey:
+              providerStore.baiduSecretKey ||
+              res.baiduSecretKey ||
+              state.baiduSecretKey,
+            bytedanceApiKey:
+              providerStore.bytedanceApiKey ||
+              res.bytedanceApiKey ||
+              state.bytedanceApiKey,
+            bytedanceUrl:
+              providerStore.bytedanceUrl ||
+              res.bytedanceUrl ||
+              state.bytedanceUrl,
+            alibabaApiKey:
+              providerStore.alibabaApiKey ||
+              res.alibabaApiKey ||
+              state.alibabaApiKey,
+            alibabaUrl:
+              providerStore.alibabaUrl || res.alibabaUrl || state.alibabaUrl,
+            moonshotApiKey:
+              providerStore.moonshotApiKey ||
+              res.moonshotApiKey ||
+              state.moonshotApiKey,
+            moonshotUrl:
+              providerStore.moonshotUrl || res.moonshotUrl || state.moonshotUrl,
+            stabilityApiKey:
+              providerStore.stabilityApiKey ||
+              res.stabilityApiKey ||
+              state.stabilityApiKey,
+            stabilityUrl:
+              providerStore.stabilityUrl ||
+              res.stabilityUrl ||
+              state.stabilityUrl,
+            tencentSecretKey:
+              providerStore.tencentSecretKey ||
+              res.tencentSecretKey ||
+              state.tencentSecretKey,
+            tencentSecretId:
+              providerStore.tencentSecretId ||
+              res.tencentSecretId ||
+              state.tencentSecretId,
+            tencentUrl:
+              providerStore.tencentUrl || res.tencentUrl || state.tencentUrl,
+            iflytekApiKey:
+              providerStore.iflytekApiKey ||
+              res.iflytekApiKey ||
+              state.iflytekApiKey,
+            iflytekUrl:
+              providerStore.iflytekUrl || res.iflytekUrl || state.iflytekUrl,
+            iflytekApiSecret:
+              providerStore.iflytekApiSecret ||
+              res.iflytekApiSecret ||
+              state.iflytekApiSecret,
+            deepseekApiKey:
+              providerStore.deepseekApiKey ||
+              res.deepseekApiKey ||
+              state.deepseekApiKey,
+            deepseekUrl:
+              providerStore.deepseekUrl || res.deepseekUrl || state.deepseekUrl,
+            xaiApiKey:
+              providerStore.xaiApiKey || res.xaiApiKey || state.xaiApiKey,
+            xaiUrl: providerStore.xaiUrl || res.xaiUrl || state.xaiUrl,
+            chatglmApiKey:
+              providerStore.chatglmApiKey ||
+              res.chatglmApiKey ||
+              state.chatglmApiKey,
+            chatglmUrl:
+              providerStore.chatglmUrl || res.chatglmUrl || state.chatglmUrl,
+            siliconflowApiKey:
+              providerStore.siliconflowApiKey ||
+              res.siliconflowApiKey ||
+              state.siliconflowApiKey,
+            siliconflowUrl:
+              providerStore.siliconflowUrl ||
+              res.siliconflowUrl ||
+              state.siliconflowUrl,
+          }));
         })
         .catch(() => {
           console.error("[Config] failed to fetch config");

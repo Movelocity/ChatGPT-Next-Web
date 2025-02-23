@@ -88,6 +88,7 @@ import { useMaskStore } from "../store/mask";
 import { ProviderType } from "../utils/cloud";
 import { TTSConfigList } from "./tts-config";
 import { RealtimeConfigList } from "./realtime-chat/realtime-config";
+import { ProviderConfig } from "./provider-config";
 
 function EditPromptModal(props: { id: string; onClose: () => void }) {
   const promptStore = usePromptStore();
@@ -1458,6 +1459,24 @@ export function Settings() {
     </>
   );
 
+  const [showProviderConfig, setShowProviderConfig] = useState(false);
+
+  const providerConfigButton = (
+    <List>
+      <ListItem
+        title="Provider Configuration"
+        subTitle="Configure API providers and endpoints"
+      >
+        <IconButton
+          icon={<ConfigIcon />}
+          text="Configure"
+          onClick={() => setShowProviderConfig(true)}
+          shadow
+        />
+      </ListItem>
+    </List>
+  );
+
   return (
     <ErrorBoundary>
       <div className="window-header" data-tauri-drag-region>
@@ -1911,7 +1930,13 @@ export function Settings() {
         </List>
 
         <DangerItems />
+
+        {providerConfigButton}
       </div>
+
+      {showProviderConfig && (
+        <ProviderConfig onClose={() => setShowProviderConfig(false)} />
+      )}
     </ErrorBoundary>
   );
 }
